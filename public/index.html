@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Security Scanner & Firewall Visualizer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <h1>Network Security Scanner & Firewall Visualizer</h1>
+        <p>Scan a host, inspect services, and test firewall rules in one interface.</p>
+      </div>
+      <div class="hero-badge">Node.js Project</div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>Scanner</h2>
+        <form id="scanForm" class="form-grid">
+          <label>
+            Target IP or Hostname
+            <input type="text" id="target" placeholder="127.0.0.1 or localhost" value="127.0.0.1" required>
+          </label>
+          <label>
+            Scan Type
+            <select id="scanType">
+              <option>TCP Connect</option>
+              <option>UDP</option>
+              <option>Full Connect</option>
+              <option>TCP SYN</option>
+            </select>
+          </label>
+          <label class="wide">
+            Port Range
+            <input type="text" id="portRange" placeholder="80,443,3000 or 1-1000">
+          </label>
+          <button type="submit" class="primary-btn">Start Scan</button>
+        </form>
+        <div id="scanMeta" class="meta"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>IP</th>
+                <th>Port</th>
+                <th>Service</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="scanResults"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Firewall Rule Creator</h2>
+        <form id="ruleForm" class="form-grid">
+          <label>
+            Action
+            <select id="ruleAction">
+              <option value="allow">Allow</option>
+              <option value="deny">Deny</option>
+            </select>
+          </label>
+          <label>
+            IP Address
+            <input type="text" id="ruleIp" placeholder="any or 192.168.1.10" value="any">
+          </label>
+          <label>
+            Port
+            <input type="text" id="rulePort" placeholder="any or 80" value="any">
+          </label>
+          <label>
+            Protocol
+            <select id="ruleProtocol">
+              <option value="any">Any</option>
+              <option value="tcp">TCP</option>
+              <option value="udp">UDP</option>
+            </select>
+          </label>
+          <label>
+            Priority
+            <input type="number" id="rulePriority" min="1" value="1">
+          </label>
+          <button type="submit" class="primary-btn">Add Rule</button>
+        </form>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Priority</th>
+                <th>Action</th>
+                <th>IP</th>
+                <th>Port</th>
+                <th>Protocol</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody id="ruleResults"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card wide-card">
+        <h2>Traffic Flow Simulator</h2>
+        <form id="simulationForm" class="form-grid sim-grid">
+          <label>
+            Source IP
+            <input type="text" id="sourceIp" placeholder="192.168.1.5" value="192.168.1.5">
+          </label>
+          <label>
+            Destination IP
+            <input type="text" id="destIp" placeholder="192.168.1.10" value="192.168.1.10">
+          </label>
+          <label>
+            Port
+            <input type="number" id="simPort" min="1" max="65535" value="80">
+          </label>
+          <label>
+            Protocol
+            <select id="simProtocol">
+              <option value="tcp">TCP</option>
+              <option value="udp">UDP</option>
+            </select>
+          </label>
+          <button type="submit" class="primary-btn">Simulate Traffic</button>
+        </form>
+        <div id="flowDiagram" class="flow-diagram">
+          <div class="flow-node">Source</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">Rules</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">Destination</div>
+        </div>
+        <div id="simulationOutput" class="simulation-output">Add rules and run a simulation to see the decision.</div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
