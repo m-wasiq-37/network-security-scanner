@@ -12,6 +12,9 @@ This project is a Node.js web application that scans a target host for common po
 - Priority based rule matching
 - Traffic flow simulation with visual feedback
 
+<img width="1350" height="1825" alt="localhost_3000_" src="https://github.com/user-attachments/assets/d729824b-c531-42bf-aeb9-0ed5c637d971" />
+
+
 ## Tech Stack
 
 - Node.js
