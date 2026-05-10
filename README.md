@@ -2,7 +2,7 @@
 
 This project is a Node.js web application that scans a target host for common ports, displays services and status in a table, and lets the user create firewall rules to simulate whether traffic is allowed or denied.
 
-## Features
+## Features 
 
 - Target IP or hostname input
 - Scan type selection
